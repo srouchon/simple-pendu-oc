@@ -8,27 +8,38 @@ class App extends Component {
   state = {
     word: WORD,
     letters: LETTERS,
-    usedLetters: ['O','E'],
+    usedLetters: ['O', 'E', 'R'],
   };
 
   displayLetters() {
+    const lettersTags = LETTERS.map(letter => {
+      return (
+        <li className='letter' key={letter}>
+          {letter}
+        </li>
+      );
+    });
+    return lettersTags;
+  };
+  
+  displayWord() {
     const { word, usedLetters } = this.state;
     const wordLetters = word.split('');
-    const hiddenWord = wordLetters.map(letter => {
+    const hiddenWord = wordLetters.map((letter, index) => {
       if (usedLetters.includes(letter)) {
-      return <p className='letter'>{letter}</p>;
+        return <p className='letter' key={index}>{letter}</p>;
       }
-      return <p className='symbol'>__</p>
+      return <p className='symbol' key={index}>__</p>
     });
     return hiddenWord;
   };
   
   render() {
+    
     return (
       <div className="App">
-        <div className='letters'>
-          {this.displayLetters()}
-        </div>
+        <div className='letters' key='letters'>{this.displayLetters()}</div>
+        <div className='word' key='word'>{this.displayWord()}</div>
       </div>
     );
   };
