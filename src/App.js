@@ -6,15 +6,25 @@ const WORD = 'OPENCLASSROOMS';
 
 class App extends Component {
   state = {
-    word: WORD,
+    word: WORD.split(''),
     letters: LETTERS,
-    usedLetters: ['O', 'E', 'R'],
+    usedLetters: [],
   };
-
+  
+  //Arrow fx for binding
+  handleClick = (letter) => {
+    this.setState({usedLetters: [...this.state.usedLetters, letter]})
+    // if (this.state.word.includes(letter)) {
+    //   console.log('included letter')
+    // } else {
+    //   console.log('letter not included into word')
+    // }
+  }
+  
   displayLetters() {
     const lettersTags = LETTERS.map(letter => {
       return (
-        <li className='letter' key={letter}>
+        <li className='letter' key={letter} onClick={() => this.handleClick(letter)}>
           {letter}
         </li>
       );
@@ -24,8 +34,7 @@ class App extends Component {
   
   displayWord() {
     const { word, usedLetters } = this.state;
-    const wordLetters = word.split('');
-    const hiddenWord = wordLetters.map((letter, index) => {
+    const hiddenWord = word.map((letter, index) => {
       if (usedLetters.includes(letter)) {
         return <p className='letter' key={index}>{letter}</p>;
       }
@@ -38,6 +47,7 @@ class App extends Component {
     
     return (
       <div className="App">
+        <div className='letters'>{this.state.usedLetters}</div>
         <div className='letters' key='letters'>{this.displayLetters()}</div>
         <div className='word' key='word'>{this.displayWord()}</div>
       </div>
