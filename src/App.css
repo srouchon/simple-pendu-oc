@@ -1,0 +1,12 @@
+.letters {
+  display: flex;
+}
+
+.symbol {
+  padding-right: 20px;
+}
+
+.letter {
+  padding-right: 20px;
+  font-weight: bold;
+}
