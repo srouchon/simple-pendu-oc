@@ -14,13 +14,8 @@ class App extends Component {
   //Arrow fx for binding
   handleClick = (letter) => {
     this.setState({usedLetters: [...this.state.usedLetters, letter]})
-    // if (this.state.word.includes(letter)) {
-    //   console.log('included letter')
-    // } else {
-    //   console.log('letter not included into word')
-    // }
   }
-  
+
   displayLetters() {
     const lettersTags = LETTERS.map(letter => {
       return (
@@ -47,7 +42,9 @@ class App extends Component {
     
     return (
       <div className="App">
-        <div className='letters'>{this.state.usedLetters}</div>
+        <div>
+          <p>Click on a letter to find the hidden word :</p>
+        </div>
         <div className='letters' key='letters'>{this.displayLetters()}</div>
         <div className='word' key='word'>{this.displayWord()}</div>
       </div>
